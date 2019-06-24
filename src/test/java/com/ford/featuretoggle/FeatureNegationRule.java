@@ -20,7 +20,8 @@ public class FeatureNegationRule implements TestRule {
             public void evaluate() throws Throwable {
                 FeatureNegation feature = description.getAnnotation(FeatureNegation.class);
                 if (feature != null) {
-                    String flag = getenv(format(FLAG_NAME, feature.value().toString()));
+                    String flag = getenv(format(FLAG_NAME, feature.value().toString()).toUpperCase());
+                    System.out.println("FLAG_NAME in feature"+ FLAG_NAME +" value is "+flag);
                     boolean enabled = valueOf(flag != null ? flag : "false");
                     if (!enabled) {
                         base.evaluate();
@@ -29,6 +30,7 @@ public class FeatureNegationRule implements TestRule {
                                 + feature.value().toString() + " is not enabled.");
                     }
                 } else {
+                    System.out.println("Not able to get Feature Negation Annotation");
                     base.evaluate();
                 }
             }
