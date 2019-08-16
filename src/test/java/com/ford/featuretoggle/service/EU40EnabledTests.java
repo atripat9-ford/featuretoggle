@@ -1,7 +1,7 @@
 package com.ford.featuretoggle.service;
 
-import com.ford.featuretoggle.Feature;
-import com.ford.featuretoggle.FeatureRule;
+import com.ford.featuretoggle.FeatureStateRule;
+import com.ford.featuretoggle.OnlyRunIf;
 import com.ford.featuretoggle.model.VinDetails;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -14,10 +14,10 @@ import org.springframework.web.client.RestTemplate;
 public class EU40EnabledTests {
 
     @Rule
-    public RuleChain featureRule = RuleChain.outerRule(new FeatureRule());
+    public RuleChain featureNegationRule = RuleChain.outerRule(new FeatureStateRule());
 
     @Test
-    @Feature(Feature.Name.eu40Feature)
+    @OnlyRunIf(feature = OnlyRunIf.Name.eu40, is= OnlyRunIf.ToggleState.enabled)
     public void testVinDetailsForE40() {
 
         RestTemplate restTemplate  = new RestTemplate();

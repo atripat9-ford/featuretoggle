@@ -8,12 +8,17 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target(METHOD)
 @Retention(RUNTIME)
-public @interface FeatureNegation {
-    Name value();
+public @interface OnlyRunIf {
+    ToggleState is();
+    Name feature();
 
     enum Name {
-        eu40Feature,
-        anzFeature
+        eu40,
+        anz
+    }
+    enum ToggleState {
+        disabled,
+        enabled
     }
 }
 

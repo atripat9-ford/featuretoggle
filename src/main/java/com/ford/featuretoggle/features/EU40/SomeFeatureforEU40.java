@@ -21,6 +21,8 @@ public class SomeFeatureforEU40 {
 
     @Around("eu40Details()")
     public VinDetails around(ProceedingJoinPoint pjp) throws Throwable {
+        //TODO check the config at run time and decide whether to call the backend system.
+
         VinDetails vinDetails = new VinDetails("mockVin", "mockColor", new Date(), "MOCK-EU40");
         return vinDetails;
     }

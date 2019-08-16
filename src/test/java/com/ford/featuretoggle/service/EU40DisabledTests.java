@@ -1,7 +1,7 @@
 package com.ford.featuretoggle.service;
 
-import com.ford.featuretoggle.FeatureNegation;
-import com.ford.featuretoggle.FeatureNegationRule;
+import com.ford.featuretoggle.FeatureStateRule;
+import com.ford.featuretoggle.OnlyRunIf;
 import com.ford.featuretoggle.model.VinDetails;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -14,10 +14,10 @@ import org.springframework.web.client.RestTemplate;
 public class EU40DisabledTests {
 
     @Rule
-    public RuleChain featureNegationRule = RuleChain.outerRule(new FeatureNegationRule());
+    public RuleChain featureNegationRule = RuleChain.outerRule(new FeatureStateRule());
 
     @Test
-    @FeatureNegation(FeatureNegation.Name.eu40Feature)
+    @OnlyRunIf(feature = OnlyRunIf.Name.eu40, is= OnlyRunIf.ToggleState.disabled)
     public void testVinDetailsForDisabledE40() {
 
         RestTemplate restTemplate  = new RestTemplate();
