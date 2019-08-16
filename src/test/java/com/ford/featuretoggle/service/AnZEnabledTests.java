@@ -19,13 +19,16 @@ public class AnZEnabledTests {
     @Test
     @OnlyRunIf(feature = OnlyRunIf.Name.anz, is= OnlyRunIf.ToggleState.enabled)
     public void testVinDetailsForAnZ() {
-
         RestTemplate restTemplate  = new RestTemplate();
 
         ResponseEntity<VinDetails> vinDetailsResponse = restTemplate.exchange("http://localhost:8080/ap1/v1/vins/anz", HttpMethod.GET, null, VinDetails.class);
 
-        //TODO check how to change the assert statements based on annotations
         Assert.assertEquals("AnZ",vinDetailsResponse.getBody().getSource());
+    }
+
+    @Test
+    public void test() {
+        Assert.assertTrue(true);
     }
 
 }

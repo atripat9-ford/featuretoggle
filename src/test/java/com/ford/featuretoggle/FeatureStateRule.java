@@ -21,6 +21,7 @@ public class FeatureStateRule implements TestRule {
                     String flag = getenv(String.format(FLAG_NAME, feature.feature().toString()).toUpperCase());
                     boolean enabled = valueOf(flag != null ? flag : "false");
                     checkAssumptions(enabled, feature);
+                    base.evaluate();
                 } else {
                     base.evaluate();
                 }

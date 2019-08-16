@@ -24,7 +24,6 @@ public class EU40DisabledTests {
 
         ResponseEntity<VinDetails> vinDetailsResponse = restTemplate.exchange("http://localhost:8080/ap1/v1/vins/eu40", HttpMethod.GET, null, VinDetails.class);
 
-        //TODO check how to change the assert statements based on annotations
         Assert.assertEquals("MOCK-EU40",vinDetailsResponse.getBody().getSource());
     }
 
